@@ -13,6 +13,40 @@ Challenge 2: 0.99597
 We tried several modeling paths during development and settled on the approach implemented here.
 
 ---
+## Ablations & Experiments
+
+Throughout development, we ran a large number of experiments exploring different training directions and variations.  
+These include:
+
+- **Masking strategies**  
+  Tried multiple masking ratios and masking patterns.
+
+- **Denoising objectives**  
+  Added noise to inputs and trained the model to recover the clean signal.
+
+- **Future-prediction tokens**  
+  Added tokens predicting upcoming temporal slices.
+
+- **Contrastive loss between CLS tokens**  
+  Pushing CLS tokens from different windows toward or away from each other inside a batch.
+
+- **Contrastive loss across subjects**  
+  Using positive pairs from similar subjects and negative pairs from dissimilar ones.
+
+- **4s → 2s representation alignment**  
+  Training the model so that 2-second windows produce representations close to their 4-second counterparts.
+
+- **Age-based pretraining**  
+  Using age labels as an auxiliary pretraining target.
+
+- **Task-classification heads**  
+  Adding simple classification objectives during pretraining.
+
+- **Used the DINOv3 training codebase**, with preprocessing and augmentation adjusted for EEG.
+
+**We also tried chaining and mixing these approaches in different combinations to explore deeper effects.**
+
+Only the final approach in this repository was used for the official submission.
 
 ## Approach (High-Level)
 
